@@ -2,7 +2,8 @@ from datetime import datetime
 import os
 import glob
 import pandas as pd
-from app.utils.utils import Utils
+from mongodb_service import MongoDBService
+from utils import Utils
 
 '''
 clase que define los servicios para el manejo de archivos
@@ -10,6 +11,10 @@ clase que define los servicios para el manejo de archivos
 
 
 class FileService:
+
+    def __init__(self):
+        self.mongo_service = MongoDBService()
+        self.utils = Utils()
 
     def welcome(self):
         return 'Bienvenido a la API de ML.'
