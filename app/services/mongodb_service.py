@@ -1,5 +1,4 @@
 import re
-from pymongo import MongoClient
 from db import MongoConnection
 
 '''

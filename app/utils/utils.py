@@ -7,4 +7,4 @@ class Utils:
         return response
 
     def arreglar_nombre(self, nombre):
-        return nombre.upper().replace(" ", "").replace("Á", "A").replace("Ó", "O").replace("Í", "I").replace("Ú", "U").replace("É", "E")
+        return nombre.upper().replace(" ", "").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U")
