@@ -2,7 +2,7 @@ from datetime import datetime
 import os
 import glob
 import pandas as pd
-from mongodb_service import MongoDBService
+from app.services.mongodb_service import MongoDBService
 from app.utils.utils import Utils
 
 '''
