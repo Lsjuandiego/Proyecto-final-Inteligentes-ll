@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes.mlearning_route import todo_api_router
+from app.routes.machine_learning_routes import todo_api_router
 
 app = FastAPI()
 

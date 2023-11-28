@@ -1,5 +1,5 @@
-from services.file_service import FileService
-from utils import Utils
+from app.services.file_service import FileService
+from app.utils.utils import Utils
 
 '''
 clase para controlar conexiones de servicios para manejo de archivos 

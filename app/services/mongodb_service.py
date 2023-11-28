@@ -1,5 +1,5 @@
 import re
-from db import MongoConnection
+from app.db.connection import MongoConnection
 
 '''
 clase que maneja los servicios relacionados con mongoDB

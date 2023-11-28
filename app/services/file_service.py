@@ -3,7 +3,7 @@ import os
 import glob
 import pandas as pd
 from mongodb_service import MongoDBService
-from utils import Utils
+from app.utils.utils import Utils
 
 '''
 clase que define los servicios para el manejo de archivos
