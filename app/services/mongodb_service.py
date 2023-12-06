@@ -10,7 +10,7 @@ class MongoDBService:
     def __init__(self):
         mongoDB = MongoConnection()
         self.client = mongoDB.get_mongo_connection()
-        self.db = self.client['MLearning']
+        self.db = self.client['cluster0']
         self.collection = None
     '''
     Guarda un objeto JSON en la colección especificada de MongoDB. Verifica si ya existe un registro con ciertos

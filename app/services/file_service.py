@@ -4,6 +4,8 @@ import glob
 import pandas as pd
 from app.services.mongodb_service import MongoDBService
 from app.utils.utils import Utils
+import openpyxl
+
 
 '''
 clase que define los servicios para el manejo de archivos
@@ -87,7 +89,12 @@ class FileService:
         datasets = self.mongo_service.obtener_nombres_dataset('Dataset')
         if datasets:
             for elemento in datasets:
-                if nombre_dataset.lower() in elemento or nombre_dataset.upper() in elemento or nombre_dataset.capitalize() in elemento:
+                print('longitud datasets ', len(datasets))
+                print('nombre dataset ingresado ', nombre_dataset)
+                print('elemento', elemento)
+                print('Longitud de nombre_dataset:', len(nombre_dataset))
+                print('Longitud de elemento:', len(elemento))
+                if nombre_dataset in elemento or nombre_dataset.lower() in elemento or nombre_dataset.upper() in elemento or nombre_dataset.capitalize() in elemento:
                     return True
         print('No se encontrón datasets')
         return False

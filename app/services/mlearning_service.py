@@ -43,7 +43,7 @@ from sklearn.feature_selection import SelectKBest, f_classif
 
 # Normalizar datos
 from sklearn.preprocessing import MinMaxScaler
-from app.models.entrenamiento_model import InfoEntrenamiento
+from app.models.training_model import InfoEntrenamiento
 
 '''
 CLASE QUE REUNE LA FUNCIONALIDAD DE MLEARNING
