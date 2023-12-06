@@ -20,11 +20,13 @@ class MongoConnection:
 
         Returns:
             pymongo.database.Database: La conexión a la base de datos MLearning.
+
+            mongodb+srv://lsjuandiego:mNOtuVUwEGzCdGmp@cluster0.bb9vjrc.mongodb.net/
         """
         try:
             client = MongoClient('mongodb+srv://' + self.user + ':' + self.password +
                                  '@' + self.db + '.bb9vjrc.mongodb.net/?retryWrites=true&w=majority')
-            return client['MLearning']
+            return client['cluster0']
         except Exception as e:
             print("Error connecting to MongoDB:", e)
             return None
