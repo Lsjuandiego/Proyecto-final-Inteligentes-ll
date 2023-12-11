@@ -23,9 +23,9 @@ clase que maneja todas las rutas de nuestra API
 
 
 # ruta para el index de la api
-@todo_api_router.get("/", description="Obtiene el index de la aplicación, para mostrar los gráficos")
-async def get_todos():
-    return FileResponse("app/templates/index.html")
+# @todo_api_router.get("/", description="Obtiene el index de la aplicación, para mostrar los gráficos")
+# async def get_todos():
+#     return FileResponse("app/templates/index.html")
 
 
 @todo_api_router.get("/datasets", description="Obtiene los datasets cargados en la aplicación")
@@ -46,7 +46,7 @@ async def get_histogram(nombre_dataset: str):
 # ruta que usa el servicio de matriz de correlaccion
 
 
-@todo_api_router.get("/matriz-correlacion", description="Obtiene la matriz de correlacción de las variables numéricas del dataset")
+@todo_api_router.get("/multivariate-graphs-class", description="Obtiene la matriz de correlacción de las variables numéricas del dataset")
 async def get_matriz_correlacion(nombre_dataset: str):
     img_path = await processing_controller.obtener_matriz_correlacion(nombre_dataset)
     if isinstance(img_path, str):
@@ -86,7 +86,7 @@ async def upload_file(file: UploadFile = File(...)):
 # ruta para obtener el tipo de datos
 
 
-@todo_api_router.get("/tipos-datos", description="Obtiene los tipos de datos de los datos del dataset")
+@todo_api_router.get("/columns-describe", description="Obtiene los tipos de datos de los datos del dataset")
 async def get_types(nombre_dataset):
     return processing_controller.get_types(nombre_dataset)
 # ruta para el servicio general de entrenamiento
@@ -119,7 +119,7 @@ async def matriz_confusional(nombre_dataset: str, nombre_algoritmo: str):
 # ruta para obtener la description de los algoritmos entrenados
 
 
-@todo_api_router.get("/metricas-algoritmos-entrenados", description="Permite obtener las métricas que obtuvieron los algoritmos entrenados")
+@todo_api_router.get("/results", description="Permite obtener las métricas que obtuvieron los algoritmos entrenados")
 async def metricas_algoritmos_entrenados(nombre_dataset: str):
     return processing_controller.metricas_algoritmos_entrenados(nombre_dataset=nombre_dataset)
 
@@ -142,7 +142,6 @@ async def prediccion_algoritmo(nombre_dataset: str, prediccion: PrediccionModel 
 
 # ruta para obtener el top de los algoritmos que se han entrenado
 
-
-@todo_api_router.get("/top3-algoritmos", description="Permite obtener los 3 mejores algoritmos entrenados")
-async def top3_algoritmos(nombre_dataset: str):
-    return mlearning_controller.obtener_mejores_algoritmos(nombre_dataset)
+# @todo_api_router.get("/top3-algoritmos", description="Permite obtener los 3 mejores algoritmos entrenados")
+# async def top3_algoritmos(nombre_dataset: str):
+#     return mlearning_controller.obtener_mejores_algoritmos(nombre_dataset)

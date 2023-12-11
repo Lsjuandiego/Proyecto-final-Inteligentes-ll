@@ -1,0 +1,27 @@
+uvicorn main:app --reload -> para correr el api
+
+
+____endpoints_____
+/load: ya
+
+/basic statistics/{dataset_id}: falta
+
+/colums-describe/{dataset_id} : ya
+
+/imputation/{dataset_id}/type/{number_type}: debo modificarlo
+
+/general-univariate-graphs/{dataset_id}: falta
+
+/univariate-graphs-class/{dataset_id}/: falta
+
+/bivariate-graphs-class/{dataset_id}/: falta
+
+/multivariate -graphs-class/{dataset_id}/: ya y se llama /matriz correlacion
+
+/pca/{dataset_id}/: falta
+
+/train/{dataset_id}/: ya
+
+/results: ya se llama metricas algoritmos entrenados
+
+/prediction/{train_id}: ya
