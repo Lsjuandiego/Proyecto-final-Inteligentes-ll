@@ -37,7 +37,20 @@ class ProcessingController:
         except Exception as e:
             return self.utils.prueba(msg=f'Error al obtener los tipos de datos: {str(e)}'), 500
 
+# basics statistics
+    def basic_statistics(self, nombre_dataset):
+        try:
+            describe_stats = self.processing_service.get_basic_statistics(
+                nombre_dataset)
+            if describe_stats is not None:
+                return self.utils.prueba(datos=describe_stats), 200
+            return self.utils.prueba(msg='No se encontraron datos'), 404
+        except Exception as e:
+            print(f'Error al obtener estadísticas básicas: {e}')
+            return self.utils.prueba(msg=f'Error al obtener estadísticas básicas: {str(e)}'), 500
+
  # Realiza el descarte de datos y devuelve el mensaje procesado con un código de estado
+
     def descarte(self, nombre_dataset):
         try:
             msg = self.processing_service.descarte_datos(nombre_dataset)
@@ -48,6 +61,7 @@ class ProcessingController:
             return self.utils.prueba(msg=f'Error al obtener los tipos de datos: {str(e)}'), 500
 
  # Genera imágenes de análisis y devuelve un mensaje de éxito con las ubicaciones de las imágenes y un código de estado
+
     def generar_imagenes_analisis(self, nombre_dataset):
         try:
             ubicaciones = self.processing_service.generar_img_analisis(

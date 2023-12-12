@@ -43,9 +43,15 @@ async def get_histogram(nombre_dataset: str):
     else:
         return img_path
 
+
+# ruta Devuelve los datos que genera el comando “describe” de pandas, por cada una de las columnas del dataset
+
+@todo_api_router.get("/basic-statistics/{nombre_dataset}", description="Devuelve los datos que genera el comando 'describe' de pandas, por cada una de las columnas del dataset")
+def obtener_estadisticas(nombre_dataset: str):
+    return processing_controller.basic_statistics(nombre_dataset)
+
+
 # ruta que usa el servicio de matriz de correlaccion
-
-
 @todo_api_router.get("/multivariate-graphs-class", description="Obtiene la matriz de correlacción de las variables numéricas del dataset")
 async def get_matriz_correlacion(nombre_dataset: str):
     img_path = await processing_controller.obtener_matriz_correlacion(nombre_dataset)

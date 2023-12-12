@@ -70,6 +70,34 @@ class ProcessingService:
         except Exception as e:
             print(f'Error al tratar los datos: {str(e)}')
             return None
+
+    '''
+    función para generar los basics-statistics
+    '''
+
+    def get_basic_statistics(self, nombre_dataset):
+        try:
+            if self.file_service.verificar_dataset(nombre_dataset) is False:
+                return None  # O un mensaje indicando que no existe el dataset
+
+            datos = self.mongo_service.obtener_ultimo_registro_por_nombre(
+                'Dataset', nombre_dataset)
+
+            if datos:
+                titulos = datos["titulos"]
+                valores = datos['valores']
+                df = pd.DataFrame(valores, columns=titulos)
+
+                # Genera estadísticas descriptivas por columna
+                describe_stats = df.describe().to_dict()
+                print('describe statssss ', describe_stats)
+                return describe_stats
+            else:
+                return None
+        except Exception as e:
+            print(f'Error al obtener edddstadísticas básicas: {str(e)}')
+            return None
+
     '''
      Este método obtiene el último archivo de la carpeta "sets" y el último registro de un conjunto de datos desde MongoDB. 
      A continuación, crea un DataFrame a partir de los datos obtenidos y realiza la imputación de valores nulos en las 
