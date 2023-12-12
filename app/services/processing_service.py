@@ -221,9 +221,12 @@ class ProcessingService:
                 self._generate_distribucion_probabilidad(
                     numerico, nombre_dataset.lower())
                 self._generate_diagrama_caja(numerico, nombre_dataset.lower())
+                self._generate_pair_plot(numerico, nombre_dataset.lower())
 
                 ubicacion_diagrama_caja = self.file_service.obtener_ultimo_archivo(
                     f"imgs/diagrama_caja/{nombre_dataset}-diagrama_caja")
+                ubicacion_pair_plot = self.file_service.obtener_ultimo_archivo(
+                    f"imgs/pair_plot/{nombre_dataset}-pair_plot")
 
                 ubicacion_distribucion_probabilidad = self.file_service.obtener_ultimo_archivo(
                     f"imgs/distribucion_probabilidad/{nombre_dataset}-distribucion_probabilidad")
@@ -242,7 +245,7 @@ class ProcessingService:
                 ubicacion_matriz = ubicacion_matriz.replace("\\\\", "\\")
                 print("matriz", ubicacion_matriz)
                 retorno = f'Ubicación del histograma: {ubicacion_histograma} Ubicación de la matriz de correlación: {ubicacion_matriz} Ubicación del diagrama de caja: {
-                    ubicacion_diagrama_caja} Ubicación del análisis de distribución de probabilidad: {ubicacion_distribucion_probabilidad}'
+                    ubicacion_diagrama_caja} Ubicación del análisis de distribución de probabilidad: {ubicacion_distribucion_probabilidad} Ubicación del pair plot: {ubicacion_pair_plot}'
 
                 return self.utils.prueba(msg=retorno)
             else:
@@ -273,6 +276,17 @@ class ProcessingService:
                    vmax=1.0, square=True, cmap=colormap, linecolor='white', annot=True)
         filename = nombre_dataset + '-' + 'matriz_correlacion.png'
         plt.savefig('app/files/imgs/matriz_correlacion/' + filename)
+        plt.close()
+
+    '''
+    pair plot
+    '''
+
+    def _generate_pair_plot(self, columnas_numericas, nombre_dataset):
+        sb.pairplot(columnas_numericas)
+        plt.suptitle(f'Pair Plot - {nombre_dataset}', y=1.02)
+        filename = nombre_dataset + '-' + 'pair_plot.png'
+        plt.savefig('app/files/imgs/pair_plot/' + filename)
         plt.close()
 
     '''
