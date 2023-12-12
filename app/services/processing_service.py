@@ -60,7 +60,7 @@ class ProcessingService:
                     msg = self.file_service._copia_excel(
                         df, ruta_archivo, "descarte-")
                     self.file_service.guardar_archivo_json(
-                        "descarte", nombre_archivo, 'cleanData', 'Dataset', nombre_dataset)
+                        "descarte", nombre_archivo, 'cleanData', 'Dataset')
                     return self.utils.prueba(msg=msg)
                 else:
                     print("No hay columnas con valores nulos.")
