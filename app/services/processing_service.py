@@ -218,6 +218,15 @@ class ProcessingService:
                 # Obtener las columnas numéricas del DataFrame
                 numerico = df.select_dtypes(np.number)
                 self._generate_histograma(numerico, nombre_dataset.lower())
+                self._generate_distribucion_probabilidad(
+                    numerico, nombre_dataset.lower())
+                self._generate_diagrama_caja(numerico, nombre_dataset.lower())
+
+                ubicacion_diagrama_caja = self.file_service.obtener_ultimo_archivo(
+                    f"imgs/diagrama_caja/{nombre_dataset}-diagrama_caja")
+
+                ubicacion_distribucion_probabilidad = self.file_service.obtener_ultimo_archivo(
+                    f"imgs/distribucion_probabilidad/{nombre_dataset}-distribucion_probabilidad")
 
                 ubicacion_histograma = self.file_service.obtener_ultimo_archivo(
                     f"imgs/histogramas/{nombre_dataset}-histogramas")
@@ -232,8 +241,8 @@ class ProcessingService:
                 ubicacion_matriz = ubicacion_matriz.replace("/", "\\")
                 ubicacion_matriz = ubicacion_matriz.replace("\\\\", "\\")
                 print("matriz", ubicacion_matriz)
-                retorno = f'Ubicación del histograma: {
-                    ubicacion_histograma} Ubicación de la matriz de correlación: {ubicacion_matriz}'
+                retorno = f'Ubicación del histograma: {ubicacion_histograma} Ubicación de la matriz de correlación: {ubicacion_matriz} Ubicación del diagrama de caja: {
+                    ubicacion_diagrama_caja} Ubicación del análisis de distribución de probabilidad: {ubicacion_distribucion_probabilidad}'
 
                 return self.utils.prueba(msg=retorno)
             else:
@@ -265,6 +274,30 @@ class ProcessingService:
         filename = nombre_dataset + '-' + 'matriz_correlacion.png'
         plt.savefig('app/files/imgs/matriz_correlacion/' + filename)
         plt.close()
+
+    '''
+    diagrama caja
+    '''
+
+    def _generate_diagrama_caja(self, columnas_numericas, nombre_dataset):
+        plt.figure(figsize=(12, 8))
+        columnas_numericas.boxplot()
+        filename = nombre_dataset + '-' + 'diagrama_caja.png'
+        plt.savefig('app/files/imgs/diagrama_caja/' + filename)
+        plt.close()
+
+    def _generate_distribucion_probabilidad(self, columnas_numericas, nombre_dataset):
+        plt.figure(figsize=(12, 8))
+        for columna in columnas_numericas.columns:
+            sb.histplot(columnas_numericas[columna], kde=True, label=columna)
+        plt.legend()
+        plt.xlabel('Valores')
+        plt.ylabel('Frecuencia')
+        plt.title(f'Distribución de probabilidad - {nombre_dataset}')
+        filename = nombre_dataset + '-' + 'distribucion_probabilidad.png'
+        plt.savefig('app/files/imgs/distribucion_probabilidad/' + filename)
+        plt.close()
+
     '''
     Este es un método privado utilizado para obtener la ubicación de una imagen en función de la ubicación proporcionada.
     '''

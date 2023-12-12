@@ -4,11 +4,11 @@ uvicorn main:app --reload -> para correr el api
 ____endpoints_____
 /load: ya
 
-/basic statistics/{dataset_id}: falta
+/basic statistics/{dataset_id}: ya
 
 /colums-describe/{dataset_id} : ya
 
-/imputation/{dataset_id}/type/{number_type}: debo modificarlo
+/imputation/{dataset_id}/type/{number_type}: ya
 
 /general-univariate-graphs/{dataset_id}: falta
 
