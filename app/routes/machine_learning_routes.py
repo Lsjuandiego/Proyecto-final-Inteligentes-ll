@@ -43,6 +43,17 @@ async def get_histogram(nombre_dataset: str):
     else:
         return img_path
 
+# ruta para pair plot /bivariate-graphs-class/{dataset_id}/
+
+
+@todo_api_router.get("/bivariate-graphs-class", description="Obtiene el pair plot correspondiente de cada una de las columnas")
+async def get_pair_plot(nombre_dataset: str):
+    img_path = await processing_controller.obtener_pair_plot(nombre_dataset)
+    if isinstance(img_path, str):
+        return FileResponse(img_path)
+    else:
+        return img_path
+
 
 # ruta Devuelve los datos que genera el comando “describe” de pandas, por cada una de las columnas del dataset
 

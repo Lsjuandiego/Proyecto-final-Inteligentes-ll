@@ -74,6 +74,9 @@ class ProcessingController:
     async def obtener_histograma(self, nombre_dataset):
         return await self.processing_service.obtener_imagen_histograma(nombre_dataset)
 
+    async def obtener_pair_plot(self, nombre_dataset):
+        return await self.processing_service.obtener_imagen_pair_plot(nombre_dataset)
+
   # Obtiene una imagen de matriz de correlación y devuelve la imagen obtenida.
     async def obtener_matriz_correlacion(self, nombre_dataset):
         return self.processing_service.obtener_imagen_matriz(nombre_dataset)

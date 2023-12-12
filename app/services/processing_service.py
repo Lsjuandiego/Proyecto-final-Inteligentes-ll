@@ -409,6 +409,18 @@ class ProcessingService:
         except FileNotFoundError as e:
             return {'mensaje': f'Error al obtener la imagen del histograma: {str(e)}'}, 404
 
+    async def obtener_imagen_pair_plot(self, nombre_dataset):
+        try:
+            if self.file_service.verificar_dataset(nombre_dataset) is False:
+                return {'mensaje': f'No existe un dataset relacionado con el nombre: {nombre_dataset}'}, 404
+            nombre_dataset = nombre_dataset.lower()
+            img = self._obtener_imagen(
+                f"imgs/pair_plot/{nombre_dataset}-pair_plot")
+            # print(f'IMAGEN: {img}')
+            return img
+        except FileNotFoundError as e:
+            return {'mensaje': f'Error al obtener la imagen del pair plot: {str(e)}'}, 404
+
     '''
     Este método obtiene las métricas de los modelos de algoritmos más recientes almacenados en MongoDB. 
     Devuelve una lista de diccionarios que contienen el nombre del algoritmo, la normalización, la técnica utilizada y las métricas.
