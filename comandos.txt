@@ -10,11 +10,11 @@ ____endpoints_____
 
 /imputation/{dataset_id}/type/{number_type}: ya
 
-/general-univariate-graphs/{dataset_id}: falta
+/general-univariate-graphs/{dataset_id}: ya y se llama generar-imagenes
 
 /univariate-graphs-class/{dataset_id}/: falta
 
-/bivariate-graphs-class/{dataset_id}/: falta
+/bivariate-graphs-class/{dataset_id}/: ya el de obtener pair plot
 
 /multivariate -graphs-class/{dataset_id}/: ya y se llama /matriz correlacion
 
