@@ -1,7 +1,7 @@
 class Utils:
     def prueba(self, **kwargs):
         response = {
-            'mensaje': kwargs['msg']}
+            'mensaje': kwargs.get('msg', 'basics-statistics')}
         if 'datos' in kwargs:
             response['datos'] = kwargs['datos']
         return response
